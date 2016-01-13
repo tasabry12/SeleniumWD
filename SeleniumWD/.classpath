@@ -2,8 +2,7 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
-	<classpathentry kind="lib" path="C:/Dev/Tool/Selenium/JUnit/Jar/junit-4.12.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/Tool/Selenium/RC/Standalone Server/selenium-server-standalone-2.46.0.jar"/>
-	<classpathentry kind="lib" path="C:/Dev/Tool/Selenium/POI/poi-3.8-20120326.jar"/>
+	<classpathentry kind="lib" path="C:/DEV/Selenium/Selenium Server/selenium-server-standalone-2.46.0.jar"/>
+	<classpathentry kind="lib" path="C:/DEV/Selenium/POI/poi-3.8-20120326.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

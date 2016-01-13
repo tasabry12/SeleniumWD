@@ -43,20 +43,20 @@ public class WDDemo1 {
 		wd.findElement(By.name("ar.rt.leaveSlice.date")).clear();
 		
 		// Step9
-		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("07/19/15");
+		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("11/19/15");
 		
 		// Step10
 		wd.findElement(By.name("ar.rt.returnSlice.date")).clear();
 		
 		// Step11
-		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("07/20/15");
+		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("11/20/15");
 		
 		// Step12
 		wd.findElement(By.name("search")).click();		
-		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("resultsTwoColumn")));
+		wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("sortResultsSelect")));
 		
 		// Step13
-		String price = wd.findElement(By.xpath("//span[@class='price']")).getText();
+		String price = wd.findElement(By.xpath(".//*[@id='matrix']/div[1]/div/div/span")).getText().replace("$", "");
 		System.out.println("The lowest price is: " + price);
 		
 		wd.close();

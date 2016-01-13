@@ -33,8 +33,8 @@ public class WDDemo8 {
         String[][] data ;
 		HashMap map = new HashMap();
 		String itin;
-		String stepFile = "C:\\Dev\\Tool\\Selenium\\Data\\Keyword.xls";
-		String dataFile = "C:\\Dev\\Tool\\Selenium\\Data\\SearchCriteria.xls";
+		String stepFile = "C:\\DEV\\Selenium\\Data\\Keyword.xls";
+		String dataFile = "C:\\DEV\\Selenium\\Data\\SearchCriteria.xls";
 		steps = excelRead(stepFile);
 		data = excelRead(dataFile);
 		double price;
@@ -124,9 +124,9 @@ public class WDDemo8 {
 		
 		public static void send_keys(WebDriver wd, String locator, String locString, String data){
 			switch (locator){
-			case "xpath" : wd.findElement(By.xpath(locString)).clear(); wd.findElement(By.xpath(locString)).sendKeys(data);
-			case "name" : wd.findElement(By.name(locString)).clear(); wd.findElement(By.name(locString)).sendKeys(data);
-			case "id" : wd.findElement(By.id(locString)).clear(); wd.findElement(By.id(locString)).sendKeys(data);
+			case "xpath" : wd.findElement(By.xpath(locString)).clear(); wd.findElement(By.xpath(locString)).sendKeys(data); break;
+			case "name" : wd.findElement(By.name(locString)).clear(); wd.findElement(By.name(locString)).sendKeys(data); break;
+			case "id" : wd.findElement(By.id(locString)).clear(); wd.findElement(By.id(locString)).sendKeys(data); break;
 			}
 		}
 		
@@ -142,9 +142,9 @@ public class WDDemo8 {
 		public static void verify_element(WebDriver wd, String locator, String locString) {
 			WebDriverWait wait = null;
 			switch (locator){
-			case "xpath" : wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locString)));
-			case "name" :  wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locString)));
-			case "id" :    wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locString)));
+			case "xpath" : wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locString))); break;
+			case "name" :  wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locString))); break;
+			case "id" :    wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locString))); break;
 				
 			}
 		}
@@ -281,7 +281,8 @@ public class WDDemo8 {
 			for  ( int i = 0 ; i < rowNum ; i++ ) {
 				HSSFRow row = ws.getRow(i);
 				   for ( int j = 0; j < colNum ; j++ ) {
-					   HSSFCell cell = row.getCell(j);
+					   //HSSFCell cell = row.getCell(j);
+					   HSSFCell cell=row.getCell(j, org.apache.poi.ss.usermodel.Row.CREATE_NULL_AS_BLANK );
 					   String value = cellToString(cell);
 					   data[i][j] = value;
 				   }

@@ -68,13 +68,13 @@ public class WDDemo3Bis {
 		wd.findElement(By.name("ar.rt.leaveSlice.date")).clear();
 		
 		// Step9
-		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("07/19/15");
+		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("11/19/15");
 		
 		// Step10
 		wd.findElement(By.name("ar.rt.returnSlice.date")).clear();
 		
 		// Step11
-		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("07/20/15");
+		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("11/20/15");
 		
 		// Step12
 		wd.findElement(By.name("search")).click();
@@ -82,7 +82,7 @@ public class WDDemo3Bis {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='buttonLink link']")));
 		
 		// Step13
-		String price = wd.findElement(By.xpath("//span[@class='price']")).getText().replace("$", "");
+		String price = wd.findElement(By.xpath(".//*[@id='matrix']/div[1]/div/div/span")).getText().replace("$", "");
 		wd.close();
 	
 		double dprice = Double.parseDouble(price);
@@ -93,7 +93,7 @@ public class WDDemo3Bis {
 		
 
 		public static String[][] excelRead() throws Exception  {
-			File excel = new File("C:\\Dev\\Tool\\Selenium\\Data\\data.xls");
+			File excel = new File("C:\\DEV\\Selenium\\Data\\dataWDDemo3.xls");
 			FileInputStream fis = new FileInputStream(excel);
 			HSSFWorkbook wb = new HSSFWorkbook(fis);
 			HSSFSheet ws = wb.getSheet("Input");

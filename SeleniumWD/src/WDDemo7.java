@@ -53,7 +53,7 @@ public class WDDemo7 {
 					break;					
 				case "store_text" :
 					String sprice = store_text(wd,steps[i][5], steps[i][6]);
-					price = Double.parseDouble(sprice.replaceAll("total", "").replaceAll("\\n", "").replace("per person", ""));
+					price = Double.parseDouble(sprice.replaceAll("total", "").replaceAll("\\n", "").replace("per person", "").replace("$", ""));
 					itin = steps[i][1];
 					System.out.println(itin + price);
 					map.put(price, itin);
@@ -119,19 +119,23 @@ public class WDDemo7 {
 	
 	public static void send_keys(WebDriver wd, String locator, String locString, String data){
 		switch (locator){
-		case "xpath" : wd.findElement(By.xpath(locString)).clear(); wd.findElement(By.xpath(locString)).sendKeys(data);
-		case "name" : wd.findElement(By.name(locString)).clear(); wd.findElement(By.name(locString)).sendKeys(data);
-		case "id" : wd.findElement(By.id(locString)).clear(); wd.findElement(By.id(locString)).sendKeys(data);
+		
+		case "xpath" : wd.findElement(By.xpath(locString)).clear(); wd.findElement(By.xpath(locString)).sendKeys(data); break;
+		case "name" : wd.findElement(By.name(locString)).clear(); wd.findElement(By.name(locString)).sendKeys(data); break;
+		case "id" : wd.findElement(By.id(locString)).clear(); wd.findElement(By.id(locString)).sendKeys(data); break;
 		}
 	}
 	
 	public static void verify_element(WebDriver wd, String locator, String locString) {
+		System.out.println(locator);
+		System.out.println(locString);
 		WebDriverWait wait = null;
 		switch (locator){
-		case "xpath" : wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locString)));
-		case "name" :  wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locString)));
-		case "id" :    wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locString)));
+		case "xpath" : System.out.println("xpath"); wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath(locString))); break;
+		case "name" : System.out.println("name");  wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.name(locString))); break;
+		case "id" :   System.out.println("id");  wait = new WebDriverWait(wd, 60); wait.until(ExpectedConditions.visibilityOfElementLocated(By.id(locString))); break;
 			
+		                                              
 		}
 	}
 	
@@ -254,7 +258,7 @@ public class WDDemo7 {
 		
 
 		public static String[][] excelRead() throws Exception  {
-			File excel = new File("C:\\Dev\\Tool\\Selenium\\Data\\Keyword.xls");
+			File excel = new File("C:\\DEV\\Selenium\\Data\\Keyword.xls");
 			FileInputStream fis = new FileInputStream(excel);
 			HSSFWorkbook wb = new HSSFWorkbook(fis);
 			HSSFSheet ws = wb.getSheet("Input");
@@ -266,7 +270,9 @@ public class WDDemo7 {
 			for  ( int i = 0 ; i < rowNum ; i++ ) {
 				HSSFRow row = ws.getRow(i);
 				   for ( int j = 0; j < colNum ; j++ ) {
-					   HSSFCell cell = row.getCell(j);
+					  // HSSFCell cell = row.getCell(j);
+					   
+					   HSSFCell cell=row.getCell(j, org.apache.poi.ss.usermodel.Row.CREATE_NULL_AS_BLANK );
 					   String value = cellToString(cell);
 					   data[i][j] = value;
 				   }
@@ -315,6 +321,7 @@ public class WDDemo7 {
 				result = cell.getStringCellValue();
 				break;
 			case HSSFCell.CELL_TYPE_BLANK :
+				//result = "";
 				result = cell.CELL_TYPE_BLANK;
 				break;
 			default :

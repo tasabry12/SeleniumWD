@@ -73,18 +73,20 @@ public class WDDemo6 {
 			
 			// Step 6 Departure date
 			wd.findElement(By.id("flight-departing")).clear();
-			wd.findElement(By.id("flight-departing")).sendKeys("07/19/2015");
+			wd.findElement(By.id("flight-departing")).sendKeys("11/19/2015");
 			
 			// Step 6 Arrival date
 			wd.findElement(By.id("flight-returning")).clear();
-			wd.findElement(By.id("flight-returning")).sendKeys("07/20/2015");
+			wd.findElement(By.id("flight-returning")).sendKeys("11/20/2015");
 			
 			// Step 6 Search flight
 			wd.findElement(By.id("search-button")).click();
-			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("package-saving-info")));
-			
+//			wait.until(ExpectedConditions.visibilityOfElementLocated(By.id("package-saving-info")));
+	
+			wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("(//div[@class='price-column'])[1]")));
+
 			// Step 6 cheapest fly
-			String price = wd.findElement(By.xpath(".//*[@id='flex-card-0']/div[2]/div[2]/div/div/div/span[2]")).getText().replace("$", "");
+			String price = wd.findElement(By.xpath(("(//div[@class='price-column'])[1]"))).getText().replace("$", "").replace(" ", "").replace("roundtrip", "");
 
 		
 	    	wd.close();
@@ -129,13 +131,13 @@ public class WDDemo6 {
 		wd.findElement(By.name("ar.rt.leaveSlice.date")).clear();
 		
 		// Step9
-		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("07/19/15");
+		wd.findElement(By.name("ar.rt.leaveSlice.date")).sendKeys("11/19/15");
 		
 		// Step10
 		wd.findElement(By.name("ar.rt.returnSlice.date")).clear();
 		
 		// Step11
-		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("07/20/15");
+		wd.findElement(By.name("ar.rt.returnSlice.date")).sendKeys("11/20/15");
 		
 		// Step12
 		wd.findElement(By.name("search")).click();
@@ -143,7 +145,7 @@ public class WDDemo6 {
 		//wait.until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//a[@class='buttonLink link']")));
 		
 		// Step13
-		String price = wd.findElement(By.xpath("//span[@class='price']")).getText().replace("$", "");
+		String price = wd.findElement(By.xpath(".//*[@id='matrix']/div[1]/div/div/span")).getText().replace("$", "");
 		wd.close();
 	
 		double dprice = Double.parseDouble(price);
@@ -154,7 +156,7 @@ public class WDDemo6 {
 		
 
 		public static String[][] excelRead() throws Exception  {
-			File excel = new File("C:\\Dev\\Tool\\Selenium\\Data\\data.xls");
+			File excel = new File("C:\\DEV\\Selenium\\Data\\dataWDDemo3.xls");
 			FileInputStream fis = new FileInputStream(excel);
 			HSSFWorkbook wb = new HSSFWorkbook(fis);
 			HSSFSheet ws = wb.getSheet("Input");
